@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS revinfo (
+  rev BIGSERIAL PRIMARY KEY,
+  revtstmp BIGINT
+);

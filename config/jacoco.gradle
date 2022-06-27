@@ -1,0 +1,25 @@
+def excludedFiles = ["**/TemplateApplication*", "shop/inventa/template/config/**"]
+
+jacocoTestReport {
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: excludedFiles)
+        }))
+    }
+}
+
+jacocoTestCoverageVerification {
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: excludedFiles)
+        }))
+    }
+
+    violationRules {
+        rule {
+            limit {
+                minimum = "0.88".toBigDecimal()
+            }
+        }
+    }
+}
